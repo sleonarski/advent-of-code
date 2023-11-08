@@ -23,14 +23,13 @@ class ReportDecoderTest {
             """;
 
     @Test
-    void should() {
+    void shouldCalculateRateValues() {
         //given
-        var decoder = new ReportDecoder(List.of(TEST_DATA.split("\n")));
-
+        var calculator = new RateCalculator();
         //when
-        decoder.decode();
-
+        RateVault rate = calculator.calculate(List.of(TEST_DATA.split("\n")));
         //then
-        assertEquals(5, decoder.getColCount());
+        assertEquals(rate.gamma(), 22);
+        assertEquals(rate.epsilon(), 9);
     }
 }

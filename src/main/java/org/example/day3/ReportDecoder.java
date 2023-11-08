@@ -15,28 +15,22 @@ public class ReportDecoder {
         this.colCount = getColCount();
     }
 
-    public void decode() {
-        if (this.report != null) {
+    public List<List<String>> decode() {
+        List<List<String>> processedReport = new ArrayList<>();
 
-            Stack<List<String>> processedReport = new Stack<>();
+        for (int i = 0; i < colCount; i++) {
             var columnData = new ArrayList<String>();
-
-            for (int i = 0; i < colCount; i++) {
-                columnData.clear();
-                for (String s : report) {
-                    String[] split = s.split("");
-                    String encodedParam = split[i];
-                    columnData.add(encodedParam);
-                }
-                processedReport.add(columnData);
+            for (String s : report) {
+                String[] split = s.split("");
+                String encodedParam = split[i];
+                columnData.add(encodedParam);
             }
-//            processedReport.forEach(System.out::println);
-            var calculator = new RateCalculator();
-            calculator.calculate(processedReport);
+            processedReport.add(columnData);
         }
+        return processedReport;
     }
 
-    public int getColCount() {
+    private int getColCount() {
         return report != null ? report.get(0).length() : 0;
     }
 }
