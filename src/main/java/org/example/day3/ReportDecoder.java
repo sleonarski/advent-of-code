@@ -1,30 +1,42 @@
 package org.example.day3;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
 
 public class ReportDecoder {
 
-    public ReportDecoder(String report) {
+    private final List<String> report;
+    private final int colCount;
 
-        int colCount = Arrays.stream(report.split("\n")).findFirst().orElse("").length();
+    public ReportDecoder(List<String> report) {
+        this.report = List.copyOf(report);
+        this.colCount = getColCount();
+    }
 
-        List<List<String>> columns = new ArrayList<>();
+    public void decode() {
+        if (this.report != null) {
 
-        var columnData = new ArrayList<String>();
+            Stack<List<String>> processedReport = new Stack<>();
+            var columnData = new ArrayList<String>();
 
-        for (int i = 0; i < colCount; i++) {
-            columnData.clear();
-            Iterator<String> it = Arrays.stream(report.split("\n")).iterator();
-            while (it.hasNext()) {
-                String[] split = it.next().split("");
-                String s = split[i];
-                columnData.add(s);
+            for (int i = 0; i < colCount; i++) {
+                columnData.clear();
+                for (String s : report) {
+                    String[] split = s.split("");
+                    String encodedParam = split[i];
+                    columnData.add(encodedParam);
+                }
+                processedReport.add(columnData);
             }
-            columns.add(columnData);
+//            processedReport.forEach(System.out::println);
+            var calculator = new RateCalculator();
+            calculator.calculate(processedReport);
         }
-        System.out.println(colCount);
+    }
+
+    public int getColCount() {
+        return report != null ? report.get(0).length() : 0;
     }
 }
