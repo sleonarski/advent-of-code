@@ -2,8 +2,6 @@ package org.example.day3;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
 
 public class ReportDecoder {
 
@@ -11,8 +9,12 @@ public class ReportDecoder {
     private final int colCount;
 
     public ReportDecoder(List<String> report) {
-        this.report = List.copyOf(report);
-        this.colCount = getColCount();
+        if (report != null) {
+            this.report = List.copyOf(report);
+            this.colCount = getColCount();
+        } else {
+            throw new IllegalArgumentException("Cannot create ReportDecoder when report is null");
+        }
     }
 
     public List<List<String>> decode() {
@@ -31,6 +33,10 @@ public class ReportDecoder {
     }
 
     private int getColCount() {
-        return report != null ? report.get(0).length() : 0;
+        if (report != null && !report.isEmpty()) {
+            return report.get(0).length();
+        } else {
+            throw new IllegalArgumentException("Report list is null or empty");
+        }
     }
 }

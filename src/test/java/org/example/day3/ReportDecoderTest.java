@@ -1,5 +1,6 @@
 package org.example.day3;
 
+import static java.util.Collections.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -23,13 +24,13 @@ class ReportDecoderTest {
             """;
 
     @Test
-    void shouldCalculateRateValues() {
+    void shouldDecodeGivenInput() {
         //given
-        var calculator = new RateCalculator();
+        ReportDecoder decoder = new ReportDecoder(singletonList(TEST_DATA));
+
         //when
-        RateVault rate = calculator.calculate(List.of(TEST_DATA.split("\n")));
+        List<List<String>> decoded = decoder.decode();
         //then
-        assertEquals(rate.gamma(), 22);
-        assertEquals(rate.epsilon(), 9);
+        assertEquals(TEST_DATA.split("").length, decoded.size());
     }
 }

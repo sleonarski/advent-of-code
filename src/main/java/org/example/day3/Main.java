@@ -10,8 +10,7 @@ public class Main {
         List<String> input = DataReader.readFileAsList("src/main/resources/day3/data.txt");
         //Part one
         var calculator = new RateCalculator();
-        RateVault rateVault = calculator.calculate(input);
-        int calculatedConsumption = rateVault.gamma() * rateVault.epsilon();
-        System.out.println(calculatedConsumption);
+        int rate = calculator.calculate(input);
+        System.out.println(rate);
     }
 }
