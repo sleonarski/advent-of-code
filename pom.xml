@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>advent-of-code-2021</artifactId>
+    <artifactId>adveent-of-code</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
