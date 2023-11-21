@@ -1,9 +1,16 @@
 package org.example.year2021.day3;
 
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 import static org.example.year2021.day3.RateType.EPSILON;
 import static org.example.year2021.day3.RateType.GAMMA;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class RateCalculator {
@@ -12,12 +19,30 @@ public class RateCalculator {
         var decoder = new ReportDecoder(report);
         List<List<String>> decodedReport = decoder.decode();
 
+        calculateGammaEpsilonRate(decodedReport);
+
         String gammaBinaryNum = getRateFromReport(decodedReport, GAMMA);
         String epsilonBinaryNum = getRateFromReport(decodedReport, EPSILON);
 
         var binaryConverter = new BinaryToDecimalConverter();
 
         return binaryConverter.convert(gammaBinaryNum) * binaryConverter.convert(epsilonBinaryNum);
+    }
+
+    private int calculateGammaEpsilonRate(List<List<String>> decodedReport) {
+
+//        List<String> collect = decodedReport.stream().flatMap(Collection::stream).collect(toList());
+
+        for (List<String> list : decodedReport) {
+
+            Map<String, Long> collect = list.stream().collect(groupingBy(Function.identity(), counting()));
+
+            System.out.println(collect);
+        }
+
+//                .collect(Collectors.groupingBy(Function.identity(), counting()));
+
+        return 0;
     }
 
     private String getRateFromReport(List<List<String>> decodedReport, RateType rateType) {
