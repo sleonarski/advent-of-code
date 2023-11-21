@@ -31,16 +31,14 @@ public class RateCalculator {
 
     private int calculateGammaEpsilonRate(List<List<String>> decodedReport) {
 
-//        List<String> collect = decodedReport.stream().flatMap(Collection::stream).collect(toList());
+        List<Map<String, Long>> collect1 = decodedReport.stream()
+                .map(list -> list.stream()
+                        .collect(Collectors.groupingBy(Function.identity(), counting())))
+                .toList();
 
-        for (List<String> list : decodedReport) {
 
-            Map<String, Long> collect = list.stream().collect(groupingBy(Function.identity(), counting()));
 
-            System.out.println(collect);
-        }
-
-//                .collect(Collectors.groupingBy(Function.identity(), counting()));
+        System.out.println(collect1);
 
         return 0;
     }
