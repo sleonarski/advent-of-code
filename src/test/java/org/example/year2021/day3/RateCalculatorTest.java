@@ -27,7 +27,8 @@ class RateCalculatorTest {
         //given
         var calculator = new RateCalculator();
         //when
-        int calculatedRate = calculator.calculate(List.of(TEST_DATA.split("\n")));
+        int calculatedRate = calculator.calculateGammaEpsilonRate(List.of(TEST_DATA.split("\n")));
+        System.out.println(calculatedRate);
         //then
         assertEquals(198, calculatedRate);
     }
@@ -38,7 +39,7 @@ class RateCalculatorTest {
         var calculator = new RateCalculator();
         //when
         Throwable throwable = assertThrows(Throwable.class, () -> {
-            calculator.calculate(List.of());
+            calculator.calculateGammaEpsilonRate(List.of());
         });
         //then
         assertEquals(IllegalArgumentException.class, throwable.getClass());
@@ -50,7 +51,7 @@ class RateCalculatorTest {
         var calculator = new RateCalculator();
         //when
         Throwable throwable = assertThrows(Throwable.class, () -> {
-            calculator.calculate(null);
+            calculator.calculateGammaEpsilonRate(null);
         });
         //then
         assertEquals(IllegalArgumentException.class, throwable.getClass());

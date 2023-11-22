@@ -1,60 +1,58 @@
 package org.example.year2021.day3;
 
+import static java.util.Map.*;
+import static java.util.function.Function.*;
+import static java.util.stream.Collectors.*;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
 import static org.example.year2021.day3.RateType.EPSILON;
 import static org.example.year2021.day3.RateType.GAMMA;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class RateCalculator {
 
-    public int calculate(List<String> report) {
+    public int calculateGammaEpsilonRate(List<String> report) {
+
         var decoder = new ReportDecoder(report);
         List<List<String>> decodedReport = decoder.decode();
+        List<Map<String, Long>> mappedReport = mapReport(decodedReport);
 
-        calculateGammaEpsilonRate(decodedReport);
-
-        String gammaBinaryNum = getRateFromReport(decodedReport, GAMMA);
-        String epsilonBinaryNum = getRateFromReport(decodedReport, EPSILON);
+        String gamma = getBinaryValue(mappedReport, GAMMA);
+        String epsilon = getBinaryValue(mappedReport, EPSILON);
 
         var binaryConverter = new BinaryToDecimalConverter();
 
-        return binaryConverter.convert(gammaBinaryNum) * binaryConverter.convert(epsilonBinaryNum);
+        return binaryConverter.convert(gamma) * binaryConverter.convert(epsilon);
     }
 
-    private int calculateGammaEpsilonRate(List<List<String>> decodedReport) {
-
-        List<Map<String, Long>> collect1 = decodedReport.stream()
+    private static List<Map<String, Long>> mapReport(List<List<String>> decodedReport) {
+        return decodedReport.stream()
                 .map(list -> list.stream()
-                        .collect(Collectors.groupingBy(Function.identity(), counting())))
+                        .collect(groupingBy(identity(), counting())))
                 .toList();
-
-
-
-        System.out.println(collect1);
-
-        return 0;
     }
 
-    private String getRateFromReport(List<List<String>> decodedReport, RateType rateType) {
-        return decodedReport.stream().map(d -> getBinaryNumber(d, rateType)).collect(Collectors.joining(""));
+    private String getBinaryValue(List<Map<String, Long>> mappedReport, RateType rateType) {
+
+        return mappedReport.stream().map(map -> mapToBinary(map, rateType)).collect(joining(""));
     }
 
-    private static String getBinaryNumber(List<String> binaryNumList, RateType rateType) {
-        long countOnes = binaryNumList.stream().filter(n -> n.equals("1")).count();
-        long countZeros = binaryNumList.stream().filter(n -> n.equals("0")).count();
-
+    private String mapToBinary(Map<String, Long> map, RateType rateType) {
+        Stream<Entry<String, Long>> streamOfMap = map.entrySet().stream();
         if (rateType.equals(GAMMA)) {
-            return countOnes > countZeros ? "1" : "0";
+            return streamOfMap.max(
+                            Entry.comparingByValue())
+                    .map(Entry::getKey)
+                    .orElse("1");
         } else {
-            return countOnes > countZeros ? "0" : "1";
+            return streamOfMap.min(
+                            Entry.comparingByValue())
+                    .map(Entry::getKey)
+                    .orElse("1");
         }
     }
 }

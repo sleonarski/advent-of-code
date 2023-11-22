@@ -10,7 +10,8 @@ public class Main {
         List<String> input = DataReader.readFileAsList("src/main/resources/day3/data.txt");
         //Part one
         var calculator = new RateCalculator();
-        int rate = calculator.calculate(input);
+//        int rate = calculator.calculate(input);
+        int rate = calculator.calculateGammaEpsilonRate(input);
         System.out.println(rate);
     }
 }
