@@ -10,12 +10,12 @@ import static org.example.year2021.day3.RateType.GAMMA;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Stream;
 
-public class RateCalculator {
+public class GammaEpsilonCalculator implements Calculator {
 
-    public int calculateGammaEpsilonRate(List<String> report) {
+    @Override
+    public int calculate(List<String> report) {
 
         var decoder = new ReportDecoder(report);
         List<List<String>> decodedReport = decoder.decode();

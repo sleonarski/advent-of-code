@@ -14,7 +14,7 @@ public class PartOne {
     }
 
     static int runPartOne(List<Integer> parsedInput, int windowSize) {
-        return parsedInput.stream().collect(() -> new AggregatedWindow(windowSize), (aggregatedWindow, number) -> aggregatedWindow.nextNumber(number), (aw1, aw2) -> {
+        return parsedInput.stream().collect(() -> new AggregatedWindow(windowSize), AggregatedWindow::nextNumber, (aw1, aw2) -> {
             throw new CollectingException();
         }).getCount();
     }

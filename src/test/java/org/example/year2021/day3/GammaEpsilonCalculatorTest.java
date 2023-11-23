@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-class RateCalculatorTest {
+class GammaEpsilonCalculatorTest {
 
     private static final String TEST_DATA = """
             00100
@@ -25,9 +25,9 @@ class RateCalculatorTest {
     @Test
     void shouldCalculateRateValues() {
         //given
-        var calculator = new RateCalculator();
+        var calculator = new GammaEpsilonCalculator();
         //when
-        int calculatedRate = calculator.calculateGammaEpsilonRate(List.of(TEST_DATA.split("\n")));
+        int calculatedRate = calculator.calculate(List.of(TEST_DATA.split("\n")));
         System.out.println(calculatedRate);
         //then
         assertEquals(198, calculatedRate);
@@ -36,10 +36,10 @@ class RateCalculatorTest {
     @Test
     void shouldThrowExceptionWhenCalculateRateValuesWithEmptyListAsAParameter() {
         //given
-        var calculator = new RateCalculator();
+        var calculator = new GammaEpsilonCalculator();
         //when
         Throwable throwable = assertThrows(Throwable.class, () -> {
-            calculator.calculateGammaEpsilonRate(List.of());
+            calculator.calculate(List.of());
         });
         //then
         assertEquals(IllegalArgumentException.class, throwable.getClass());
@@ -48,10 +48,10 @@ class RateCalculatorTest {
     @Test
     void shouldThrowExceptionWhenCalculateRateValuesWithNull() {
         //given
-        var calculator = new RateCalculator();
+        var calculator = new GammaEpsilonCalculator();
         //when
         Throwable throwable = assertThrows(Throwable.class, () -> {
-            calculator.calculateGammaEpsilonRate(null);
+            calculator.calculate(null);
         });
         //then
         assertEquals(IllegalArgumentException.class, throwable.getClass());
