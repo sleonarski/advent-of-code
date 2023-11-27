@@ -1,6 +1,9 @@
 package org.example.year2021.day3;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 
 class LifeSupportCalculatorTest {
 
@@ -33,4 +36,13 @@ class LifeSupportCalculatorTest {
 
  */
 
+    @Test
+    void shouldCalculateLifeSupportRate() {
+        //given
+        var calc = new LifeSupportCalculator();
+        //when
+        int calculatedLS = calc.calculate(List.of(TEST_DATA.split("\n")));
+        //then
+
+    }
 }
