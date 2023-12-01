@@ -1,8 +1,10 @@
-package org.example.day1;
+package org.example.year2021.day1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+
+import org.example.year2021.day1.AggregatedWindow;
 import org.junit.jupiter.api.Test;
 
 class AggregatedWindowTest {

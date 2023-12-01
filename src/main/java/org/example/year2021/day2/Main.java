@@ -1,7 +1,7 @@
-package org.example.day2;
+package org.example.year2021.day2;
 
-import static org.example.day2.PartOne.solvePartOne;
-import static org.example.day2.PartTwo.solvePartTwo;
+import static org.example.year2021.day2.PartOne.solvePartOne;
+import static org.example.year2021.day2.PartTwo.solvePartTwo;
 
 class Main {
 

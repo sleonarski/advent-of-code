@@ -1,8 +1,8 @@
-package org.example.day2;
+package org.example.year2021.day2;
 
 import java.util.List;
 
-import static org.example.day2.Command.parse;
+import static org.example.year2021.day2.Command.parse;
 import static org.example.common.utils.DataReader.readFileAsList;
 
 public class PartTwo {

@@ -1,4 +1,4 @@
-package org.example.day2;
+package org.example.year2021.day2;
 
 import java.util.List;
 import java.util.regex.Matcher;

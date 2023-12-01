@@ -1,7 +1,7 @@
-package org.example.day1;
+package org.example.year2021.day1;
 
 import static java.util.Collections.emptyList;
-import static org.example.day1.PartOne.runPartOne;
+import static org.example.year2021.day1.PartOne.runPartOne;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -18,28 +18,28 @@ class PartOneTest {
     @Test
     void shouldRunPartOne() {
         //when
-        int solution = runPartOne(INPUT_LIST, WINDOW_SIZE);
+        int solution = PartOne.runPartOne(INPUT_LIST, WINDOW_SIZE);
         assertEquals(7,solution);
     }
 
     @Test
     void shouldProcessEmptyList() {
         //when
-        int solution = runPartOne(EMPTY_LIST, WINDOW_SIZE);
+        int solution = PartOne.runPartOne(EMPTY_LIST, WINDOW_SIZE);
         assertEquals(0,solution);
     }
 
     @Test
     void shouldProcessOneElementList() {
         //when
-        int solution = runPartOne(ONE_ELEMENT_LIST, WINDOW_SIZE);
+        int solution = PartOne.runPartOne(ONE_ELEMENT_LIST, WINDOW_SIZE);
         assertEquals(0,solution);
     }
 
     @Test
     void shouldProcessSameElementList() {
         //when
-        int solution = runPartOne(SAME_ELEMENT_LIST, WINDOW_SIZE);
+        int solution = PartOne.runPartOne(SAME_ELEMENT_LIST, WINDOW_SIZE);
         assertEquals(0,solution);
     }
 }

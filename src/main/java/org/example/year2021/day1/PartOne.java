@@ -1,4 +1,4 @@
-package org.example.day1;
+package org.example.year2021.day1;
 
 import static org.example.common.utils.DataParser.parseInput;
 
