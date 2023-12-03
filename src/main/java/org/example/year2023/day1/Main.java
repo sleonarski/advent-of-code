@@ -11,11 +11,9 @@ public class Main {
         List<String> parsedInput = DataReader.readFileAsList("src/main/resources/year2023/day1/input.txt");
         var calculator = new CalibrationCalculator();
         int output = calculator.calculateCalibrateValue(parsedInput, false);
-        System.out.println("Part One: ");
-        System.out.print(output);
+        System.out.printf("Part One: %s%n", output);
 
-        calculator.calculateCalibrateValue(parsedInput, true);
-        System.out.println("Part Two: ");
-        System.out.print(output);
+        int output2 = calculator.calculateCalibrateValue(parsedInput, true);
+        System.out.printf("Part Two: %s%n", output2);
     }
 }

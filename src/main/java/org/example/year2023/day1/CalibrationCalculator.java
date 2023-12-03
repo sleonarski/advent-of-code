@@ -32,6 +32,7 @@ public class CalibrationCalculator {
         if (digitsInLetters) {
             var finder = new DigitsFinder();
             finder.findDigitsInLetters(line);
+
         }
 
         return Arrays.stream(line.split(""))

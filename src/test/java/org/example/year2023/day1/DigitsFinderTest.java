@@ -9,27 +9,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DigitsFinderTest {
 
-    private static final String TEST_STRING1 = "wwwtwoWWW";
-    private static final String TEST_STRING2 = "wwwjedenWWW";
+    private static final String TEST_STRING = "wwwtwoWWW";
+    private static final String TEST_STRING_FEW_DIGITS = "wwwtwoWWWoness";
 
     @Test
     void shouldFindMatchAndRemoveDigitFromInput() {
         //given
         var finder = new DigitsFinder();
         //when
-        String output = finder.findDigitsInLetters(TEST_STRING1);
+        String output = finder.findDigitsInLetters(TEST_STRING);
         //expected
         assertEquals("wwwWWW", output);
         assertEquals(6, output.length());
     }
 
     @Test
-    void test() {
-        // Użyj wyrażenia regularnego do sprawdzenia, czy w ciągu znajduje się słowo reprezentujące liczbę
-        Pattern pattern = Pattern.compile("(jeden|dwa|trzy|cztery|pięć|sześć|siedem|osiem|dziewięć)", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(TEST_STRING2);
-
-        assertTrue(matcher.find());
-
+    void shouldMatchFewDigits() {
+        var finder = new DigitsFinder();
+        String digitsInLetters = finder.findDigitsInLetters(TEST_STRING_FEW_DIGITS);
+        assertEquals(8, digitsInLetters.length());
+        assertEquals("wwwWWWss", digitsInLetters);
     }
 }
