@@ -11,6 +11,7 @@ class DigitsFinderTest {
 
     private static final String TEST_STRING = "wwwtwoWWW";
     private static final String TEST_STRING_FEW_DIGITS = "wwwtwoWWWoness";
+    private static final String TEST_STRING_FEW_DIGITS_REVERSED = "kthreeightk";
 
     @Test
     void shouldFindMatchAndRemoveDigitFromInput() {
@@ -27,7 +28,15 @@ class DigitsFinderTest {
     void shouldMatchFewDigits() {
         var finder = new DigitsFinder();
         String digitsInLetters = finder.findDigitsInLetters(TEST_STRING_FEW_DIGITS);
-        assertEquals(8, digitsInLetters.length());
         assertEquals("wwwWWWss", digitsInLetters);
+        assertEquals(8, digitsInLetters.length());
+    }
+
+    @Test
+    void shouldMatchFewDigitsInReverse() {
+        var finder = new DigitsFinder();
+        String digitsInLetters = finder.findDigitsInLetters(TEST_STRING_FEW_DIGITS_REVERSED);
+        assertEquals("kthrek", digitsInLetters);
+        assertEquals(6, digitsInLetters.length());
     }
 }
