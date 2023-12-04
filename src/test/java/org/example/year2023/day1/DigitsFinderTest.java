@@ -2,9 +2,6 @@ package org.example.year2023.day1;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class DigitsFinderTest {
@@ -18,25 +15,29 @@ class DigitsFinderTest {
         //given
         var finder = new DigitsFinder();
         //when
-        String output = finder.findDigitsInLetters(TEST_STRING);
+        String output = finder.findRightMostDigit(TEST_STRING);
         //expected
-        assertEquals("wwwWWW", output);
-        assertEquals(6, output.length());
+        assertEquals("www2WWW", output);
+        assertEquals(7, output.length());
     }
 
     @Test
-    void shouldMatchFewDigits() {
+    void shouldMatchOnlyOneDigit() {
         var finder = new DigitsFinder();
-        String digitsInLetters = finder.findDigitsInLetters(TEST_STRING_FEW_DIGITS);
-        assertEquals("wwwWWWss", digitsInLetters);
-        assertEquals(8, digitsInLetters.length());
+        String digit = TEST_STRING_FEW_DIGITS;
+        digit = finder.findRightMostDigit(digit);
+        digit = finder.findLeftMostDigit(digit);
+        assertEquals("www2WWW1ss", digit);
+        assertEquals(10, digit.length());
     }
 
     @Test
     void shouldMatchFewDigitsInReverse() {
         var finder = new DigitsFinder();
-        String digitsInLetters = finder.findDigitsInLetters(TEST_STRING_FEW_DIGITS_REVERSED);
-        assertEquals("kthrek", digitsInLetters);
-        assertEquals(6, digitsInLetters.length());
+        String rightDigitsInLetters = finder.findRightMostDigit(TEST_STRING_FEW_DIGITS_REVERSED);
+        String leftDigitsInLetters = finder.findLeftMostDigit(TEST_STRING_FEW_DIGITS_REVERSED);
+        assertEquals("kthre8k", rightDigitsInLetters);
+        assertEquals("k3ightk", leftDigitsInLetters);
+        assertEquals(7, rightDigitsInLetters.length());
     }
 }

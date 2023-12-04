@@ -9,7 +9,7 @@ public class CalibrationCalculator {
     public int calculateCalibrateValue(List<String> input, boolean digitsInLetters) {
 
         return input.stream()
-                .map((String line) -> getNumbers(line, digitsInLetters))
+                .map(line -> getNumbers(line, digitsInLetters))
                 .mapToInt(this::getCalibrationValue)
                         .sum();
     }
@@ -29,13 +29,21 @@ public class CalibrationCalculator {
 
     private String getNumbers(String line, boolean digitsInLetters) {
 
+        String processedLine = line;
         if (digitsInLetters) {
+            System.out.println("before " + processedLine);
             var finder = new DigitsFinder();
-            finder.findDigitsInLetters(line);
-
+//            String leftDigitLine = finder.findLeftMostDigit(processedLine);
+//            System.out.println("before processed " + processedLine);
+            processedLine = finder.findLeftMostDigit(processedLine);
+//            System.out.println("left processed " + processedLine);
+//            String rightDigitLine = finder.findRightMostDigit(leftDigitLine);
+            processedLine = finder.findRightMostDigit(processedLine);
+//            System.out.println("right processed " + processedLine);
+            System.out.println("after " + processedLine);
         }
 
-        return Arrays.stream(line.split(""))
+        return Arrays.stream(processedLine.split(""))
                 .map(this::isNumber)
                 .collect(Collectors.joining());
     }
