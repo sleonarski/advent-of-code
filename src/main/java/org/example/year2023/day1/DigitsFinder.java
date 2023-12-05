@@ -24,6 +24,7 @@ public class DigitsFinder {
         String procesedVal = line;
         var builder = new StringBuilder();
         String[] split = line.split("");
+        System.out.println(line);
         for (int i = split.length - 1; i >= 0; i--) {
             builder.insert(0, split[i]);
 //            System.out.println(builder.toString());
@@ -33,13 +34,19 @@ public class DigitsFinder {
                 procesedVal = procesedVal.replace(numberFound, digits.get(numberFound));
                 return procesedVal;
             }
+//            while (matcher.find()) {
+//                String numberFound = matcher.group();
+//                procesedVal = procesedVal.replace(numberFound, digits.get(numberFound));
+//            }
         }
+        System.out.println(procesedVal);
         return procesedVal;
     }
 
     public String findLeftMostDigit(String line) {
         String procesedVal = line;
         var builder = new StringBuilder();
+        System.out.println(line);
         String[] split = line.split("");
         for (int i = 0; i <= split.length - 1; i++) {
             builder.insert(i, split[i]);
@@ -49,7 +56,12 @@ public class DigitsFinder {
                 procesedVal = procesedVal.replace(numberFound, digits.get(numberFound));
                 return procesedVal;
             }
+//            while (matcher.find()) {
+//                String numberFound = matcher.group();
+//                procesedVal = procesedVal.replace(numberFound, digits.get(numberFound));
+//            }
         }
+        System.out.println(procesedVal);
         return procesedVal;
     }
 }

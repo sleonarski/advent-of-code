@@ -11,17 +11,20 @@ public class CalibrationCalculator {
         return input.stream()
                 .map(line -> getNumbers(line, digitsInLetters))
                 .mapToInt(this::getCalibrationValue)
-                        .sum();
+                .sum();
     }
 
     private int getCalibrationValue(String numbers) {
         var calibrationPair = new StringBuilder();
         char firstNumber = numbers.charAt(0);
         calibrationPair.append(firstNumber);
+        System.out.print("First: " + firstNumber);
         if (numbers.length() == 1) {
             calibrationPair.append(firstNumber);
+            System.out.println(" Second: " + firstNumber);
         } else {
             char lastNumber = numbers.charAt(numbers.length() - 1);
+            System.out.println(" Second: " + lastNumber);
             calibrationPair.append(lastNumber);
         }
         return Integer.parseInt(calibrationPair.toString());
@@ -31,16 +34,17 @@ public class CalibrationCalculator {
 
         String processedLine = line;
         if (digitsInLetters) {
-            System.out.println("before " + processedLine);
+//            System.out.println("_______________________________");
+//            System.out.println("before " + processedLine);
             var finder = new DigitsFinder();
 //            String leftDigitLine = finder.findLeftMostDigit(processedLine);
 //            System.out.println("before processed " + processedLine);
+            processedLine = finder.findRightMostDigit(processedLine);
             processedLine = finder.findLeftMostDigit(processedLine);
 //            System.out.println("left processed " + processedLine);
 //            String rightDigitLine = finder.findRightMostDigit(leftDigitLine);
-            processedLine = finder.findRightMostDigit(processedLine);
 //            System.out.println("right processed " + processedLine);
-            System.out.println("after " + processedLine);
+//            System.out.println("after " + processedLine);
         }
 
         return Arrays.stream(processedLine.split(""))
