@@ -1,54 +1,52 @@
 package org.example.year2023.day1;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DigitsFinder {
 
-    private Pattern pattern = Pattern.compile("(one|two|three|four|five|six|seven|eight|nine)", Pattern.CASE_INSENSITIVE);
+    private final Pattern pattern = Pattern.compile("(one|two|three|four|five|six|seven|eight|nine)", Pattern.CASE_INSENSITIVE);
+    private final NumberChecker checker = new NumberChecker();
 
     private final Map<String, String> digits = Map.of(
-            "one", "1",
-            "two", "2",
-            "three", "3",
-            "four", "4",
-            "five", "5",
-            "six", "6",
-            "seven", "7",
-            "eight", "8",
-            "nine", "9");
+            "one", "o1e",
+            "two", "t2o",
+            "three", "t3e",
+            "four", "f4r",
+            "five", "f5e",
+            "six", "s6x",
+            "seven", "s7n",
+            "eight", "e8t",
+            "nine", "n9e");
 
     public String findRightMostDigit(String line) {
         String procesedVal = line;
         var builder = new StringBuilder();
         String[] split = line.split("");
-        System.out.println(line);
         for (int i = split.length - 1; i >= 0; i--) {
+            if (checker.isNumber(split[i])) {
+                return procesedVal;
+            }
             builder.insert(0, split[i]);
-//            System.out.println(builder.toString());
             Matcher matcher = pattern.matcher(builder);
             if (matcher.find()) {
                 String numberFound = matcher.group();
                 procesedVal = procesedVal.replace(numberFound, digits.get(numberFound));
                 return procesedVal;
             }
-//            while (matcher.find()) {
-//                String numberFound = matcher.group();
-//                procesedVal = procesedVal.replace(numberFound, digits.get(numberFound));
-//            }
         }
-        System.out.println(procesedVal);
         return procesedVal;
     }
 
     public String findLeftMostDigit(String line) {
         String procesedVal = line;
         var builder = new StringBuilder();
-        System.out.println(line);
         String[] split = line.split("");
         for (int i = 0; i <= split.length - 1; i++) {
+            if (checker.isNumber(split[i])) {
+                return procesedVal;
+            }
             builder.insert(i, split[i]);
             Matcher matcher = pattern.matcher(builder);
             if (matcher.find()) {
@@ -56,12 +54,7 @@ public class DigitsFinder {
                 procesedVal = procesedVal.replace(numberFound, digits.get(numberFound));
                 return procesedVal;
             }
-//            while (matcher.find()) {
-//                String numberFound = matcher.group();
-//                procesedVal = procesedVal.replace(numberFound, digits.get(numberFound));
-//            }
         }
-        System.out.println(procesedVal);
         return procesedVal;
     }
 }
