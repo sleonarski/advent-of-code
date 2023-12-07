@@ -2,9 +2,11 @@ package org.example.year2023.day2;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class CubeGameManagerTest {
+class GameManagerTest {
 
     private static final String TEST_INPUT ="""
     Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
@@ -17,9 +19,10 @@ class CubeGameManagerTest {
     @Test
     void shouldCalculateSumOfValidGames() {
         //given
-        var manager = new CubeGameManager();
+        var manager = new GameManager();
+        var testInputList = List.of(TEST_INPUT.split("\n"));
         //when
-        int sum = manager.sumValidGames(TEST_INPUT);
+        int sum = manager.calculateSum(testInputList);
         //expected
         assertEquals(8, sum);
     }

@@ -25,4 +25,8 @@ public class GameStats {
     public int getRoundCount() {
         return roundCount;
     }
+
+    public int getGameNumber () {
+        return Integer.parseInt(this.name.replaceAll("\\D","").trim());
+    }
 }

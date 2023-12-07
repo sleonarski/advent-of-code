@@ -6,18 +6,25 @@ import java.util.List;
 
 public class GameStatsEngine {
 
-    public GameStats createGameStats(String game) {
-//        Pattern pattern = Pattern.compile
-        String[] splitGameData = game.split(":");
-        return new GameStats(splitGameData[0],
-                Arrays.stream(splitGameData[1].split(";"))
-                        .map(round -> convertToRoundStats(round)).toList());
+    public List<GameStats> createGameStats(List<String> gameInput) {
+
+        return gameInput.stream().map(game -> {
+                    String[] splitGameData = game.split(":");
+                    return new GameStats(splitGameData[0].trim(),
+                            Arrays.stream(splitGameData[1].split(";"))
+                                    .map(this::convertToRoundStats).toList());
+                }
+        ).toList();
     }
 
-    private List<RoundStats> convertToRoundStats(String splitGameData) {
+    private RoundStats convertToRoundStats(String roundData) {
 
-        List<RoundStats> balls = Arrays.stream(splitGameData.split(";"))
-                .map(round -> convertToBallStats(round));
-        return new RoundStats(balls);
+        return new RoundStats(Arrays.stream(roundData.split(","))
+                .map(this::convertToBallStats).toList());
+    }
+
+    private BallStats convertToBallStats(String round) {
+        String[] splitRoundData = round.trim().split(" ");
+        return new BallStats(splitRoundData[1].trim(), Integer.parseInt(splitRoundData[0].trim()));
     }
 }
