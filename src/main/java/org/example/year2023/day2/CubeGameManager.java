@@ -16,7 +16,7 @@ public class CubeGameManager {
 //        gamesCollection.keySet().forEach(k -> System.out.println("game" + k));
 //        gamesCollection.values().forEach(gam -> gam.forEach(m -> System.out.println("match:" + m)));
 
-        GamesPredicate validator = new GamesPredicate();
+        GameValidator validator = new GameValidator();
         gamesCollection.entrySet().stream()
                 .filter(entry -> validator.valid(entry.getValue())).collect(Collectors.toList());
 
