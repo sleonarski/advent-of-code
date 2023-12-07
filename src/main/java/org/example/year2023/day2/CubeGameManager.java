@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class CubeGameManager {
 
+    /*
     public int sumValidGames(String testInput) {
 
         Map<String, List<String>> gamesCollection = Arrays.stream(testInput.split("\n"))
@@ -20,7 +21,15 @@ public class CubeGameManager {
         gamesCollection.entrySet().stream()
                 .filter(entry -> validator.valid(entry.getValue())).collect(Collectors.toList());
 
-
         return 0;
+     */
+
+    public int sumValidGames(String input) {
+        GameStatsEngine engine = new
+
+        Arrays.stream(input.split("\n"))
+                .map(game -> )
+
+    }
     }
 }
