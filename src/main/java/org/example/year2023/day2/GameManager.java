@@ -4,16 +4,25 @@ import java.util.List;
 
 public class GameManager {
 
-    public int calculateSum(List<String> input) {
+    public int calculateSum (List<String> input) {
+        return calculateSum(input, false);
+    }
+
+    public int calculateSum(List<String> input, boolean isPowerCalculated) {
 
         var engine = new GameStatsEngine();
         var validator = new GameValidator();
 
         List<GameStats> gameStatsList = engine.createGameStats(input);
 
-        List<GameStats> validGamesList = validator.valid(gameStatsList);
+        if (isPowerCalculated) {
+            var checker = new FewestNumberChecker();
+            return checker.calculate(gameStatsList);
+        }else {
 
-        return calculate(validGamesList);
+            List<GameStats> validGamesList = validator.valid(gameStatsList);
+            return calculate(validGamesList);
+        }
     }
 
     private int calculate(List<GameStats> validGamesList) {

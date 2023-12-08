@@ -26,4 +26,15 @@ class GameManagerTest {
         //expected
         assertEquals(8, sum);
     }
+
+    @Test
+    void shouldCalculateSumOfPowerOfASetOfCubes() {
+        //given
+        var manager = new GameManager();
+        var testInputList = List.of(TEST_INPUT.split("\n"));
+        //when
+        int sum = manager.calculateSum(testInputList, true);
+        //expected
+        assertEquals(2286, sum);
+    }
 }
