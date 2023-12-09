@@ -11,6 +11,7 @@ public class Main {
         List<String> input = DataReader.readFileAsList("src/main/resources/year2023/day2/input.txt");
         var manager = new GameManager();
 
-        System.out.println(manager.calculateSum(input));
+//        System.out.println(manager.calculateSum(input));
+        System.out.println(manager.calculateSum(input, true));
     }
 }
