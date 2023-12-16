@@ -22,8 +22,10 @@ class EngineSchemaCompilerTest {
     void shouldSumAllParts() {
         //given
         var compiler = new EngineSchemaCompiler();
+        var reader = new EngineInstructionReader(TEST_INPUT);
         //when
-        int result = compiler.calculate(TEST_INPUT);
+//        int result = compiler.calculate(TEST_INPUT);
+        int result = reader.readInstruction();
         //then
         assertEquals(4361, result);
     }

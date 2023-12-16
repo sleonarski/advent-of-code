@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-class PartTwoTest {
+class PartChunksTwoTest {
 
     private static final Integer WINDOW_SIZE = 3;
     private static final String PATH = "src/test/resources/year2021/day1/input.txt";
